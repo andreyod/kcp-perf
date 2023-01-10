@@ -20,13 +20,13 @@ sudo ctr -n=k8s.io images import _output/release-images/amd64/kube-apiserver.tar
 sudo crictl images (look for: k8s.gcr.io/kube-apiserver-amd64:v0.17.1-96865_d0f95410716331 )
 ```
 Modify file /etc/kubernetes/manifests/kube-apiserver.yaml with:  
-image: k8s.gcr.io/kube-apiserver-amd64:v0.17.1-96865_d0f95410716331
-- --etcd-servers=postgresql://root@0.0.0.0:26267/defaultdb?sslmode=disable
-- --storage-backend=crdb
-Remove the following lines:
-    - --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt
-    - --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
-    - --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key
+1)image: k8s.gcr.io/kube-apiserver-amd64:v0.17.1-96865_d0f95410716331  
+2)- --etcd-servers=postgresql://root@0.0.0.0:26267/defaultdb?sslmode=disable  
+3)- --storage-backend=crdb  
+Remove the following lines:  
+    /- --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt  
+    /- --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt  
+    /- --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key
 
 
 ## Cluster recovery
