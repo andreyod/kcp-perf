@@ -49,6 +49,13 @@ kubectl get pods -A
 ```shell
 git clone https://github.com/prometheus-operator/kube-prometheus.git
 cd kube-prometheus
+```
+To allow snapshots modify manifests/prometheus-prometheus.yaml with:  
+replicas: 1  
+enableAdminAPI: true  
+Modify manifests/alertmanager-alertmanager.yaml; manifests/prometheusAdapter-deployment.yaml with:  
+replicas: 1
+```shell
 kubectl create -f manifests/setup
 kubectl create -f manifests/
 kubectl get pods -n monitoring
